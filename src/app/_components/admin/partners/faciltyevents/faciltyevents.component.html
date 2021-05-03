@@ -1,0 +1,449 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+    <div class="d-flex flex-wrap">
+        <div class="col-lg-2 set_nopadding col-md-3 col-4">
+            
+           <app-sidenav></app-sidenav>
+        </div>
+        <div class="col-lg-10 set_nopadding col-md-9 col-8">
+            
+            <app-header></app-header>    
+            
+
+            <div class="tabcontentbox">
+                <div class="container-fluid">
+                    <div class="gym_user_box">
+                      <div>
+                        <h5 style="color: #71cad2; padding-left: 17px;"><a routerLink="partners" >Partners</a> /<a routerLink="/partner-detail/{{partnersid}}">Fitness Centers</a> /<a>Classes</a></h5>
+                      </div>
+                      <div class="gym_user_heading">
+                        <h1>All Classes</h1>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-9"></div>
+                         <div class="col-lg-3">
+                            <button type="button" (click)="addfacility()" class="btn save btn-lg" >Add Class</button>
+                         </div>
+                       </div>
+          
+                      <mat-form-field>
+          
+          
+                        <mat-label class="label">SEARCH</mat-label>
+                        <input class="search" matInput (keyup)="applyFilter($event)" placeholder="Search here" #input>
+                      </mat-form-field>
+                      <br>
+                      <br>
+          
+                      <table mat-table [dataSource]="rowData" matSort class="mat-elevation-z8">
+          
+                        <!-- Name Column -->
+                       
+          
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+          
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="title">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                        </ng-container>
+          
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="date">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Range </th>
+                          <td mat-cell *matCellDef="let element"> {{element.startDate}} to {{element.endDate}} </td>
+                        </ng-container>
+          
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="cost">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+                          <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="contactPerson">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> ContactPerson </th>
+                          <td mat-cell *matCellDef="let element"> {{element.contactPerson}} </td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="Status">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                          <td mat-cell *matCellDef="let element">
+                            <mat-slide-toggle [color]="color" [checked]="element.active"
+                              (click)="status(element.active,element.id)"></mat-slide-toggle>
+                          </td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="Action">
+                          <th mat-header-cell *matHeaderCellDef> Action </th>
+                          <td mat-cell *matCellDef="let element">
+                            <div mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                              <mat-icon class="arrow">more_vert</mat-icon>
+                            </div>
+                            <mat-menu #menu="matMenu">
+                              <button (click)="view(element)" data-toggle="modal" data-target="#exampleModal" mat-menu-item>
+                                <mat-icon>visibility</mat-icon>
+                                <span>View Class</span>
+                              </button>
+                              <button (click)="edit(element)" mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Update Class</span>
+                              </button>
+          
+                            </mat-menu>
+          
+                          </td>
+                        </ng-container>
+          
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+          
+                      </table>
+          
+                      <mat-paginator [pageSizeOptions]="[10,15,20,25]" showFirstLastButtons></mat-paginator>
+          
+          
+                    </div>
+                  </div>
+            </div><!-- tabcontentbox-end -->
+            
+
+            
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+<!-- //view events -->
+<div id="id01" class="modal">
+    <form class="modal-content animate">
+      <div class="text-center">
+        <label>View Class Detail</label>
+      </div>
+      <div class="text-center" *ngFor="let i of image">
+        <img style="max-width: 200px; max-height: 150px; min-height: 149px; min-width: 199px;" src="{{i.url}}">
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Name</label>
+          <input type="text" class="form-control" value={{eventsviewdata.name}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>Address</label>
+          <input type="text" class="form-control" value={{eventsviewdata.address}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+  
+        <div class="form-group col-4">
+          <label>Title</label>
+          <input type="text" class="form-control" value={{eventsviewdata.title}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Timing</label>
+          <input type="text" class="form-control" value={{eventsviewdata.timing}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>About</label>
+          <input type="text" class="form-control" value={{eventsviewdata.about}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>Terms And Conditions</label>
+          <input type="text" class="form-control" value={{eventsviewdata.termsAndConditions}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Contact Person</label>
+          <input type="text" class="form-control" value={{eventsviewdata.contactPerson}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>Mobile Number</label>
+          <input type="text" class="form-control" value={{eventsviewdata.mobileNumber}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>Email</label>
+          <input type="text" class="form-control" value={{eventsviewdata.email}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-4">
+          <label>Fitness Center Name</label>
+          <input type="text" class="form-control" value={{eventsviewdata.facilityName}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>Start Date</label>
+          <input type="text" class="form-control" value={{eventsviewdata.startDate}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label>End Date</label>
+          <input type="text" class="form-control" value={{eventsviewdata.endDate}} aria-describedby="emailHelp"
+            placeholder="" readonly>
+        </div>
+      </div>
+      <div class="text-center">
+  
+        <button class="btn closes" (click)="onResets()">Close</button>
+      </div>
+      <br>
+    </form>
+  </div>
+  
+  <!-- edit events -->
+  <div id="id02" class="modal">
+    <form [formGroup]="editeventform" (ngSubmit)="onSubmits()" class="modal-content animate">
+      <div class="text-center">
+        <label>Edit Class Detail</label>
+      </div>
+  
+  
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" [(ngModel)]="eventsviewdata.name"
+            [ngClass]="{ 'is-invalid': submitted && a.name.errors }">
+          <div *ngIf="submitted && a.name.errors" class="invalid-feedback">
+            <div *ngIf="a.name.errors.required"> name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+         
+        </div>
+  
+        <div class="form-group col-4">
+          <label>Title</label>
+          <input type="text" class="form-control" formControlName="title" [(ngModel)]="eventsviewdata.title"
+            [ngClass]="{ 'is-invalid': submitted && a.title.errors }">
+          <div *ngIf="submitted && a.title.errors" class="invalid-feedback">
+            <div *ngIf="a.title.errors.required"> title is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Timing</label>
+          <input type="time" class="form-control" formControlName="timing" [(ngModel)]="eventsviewdata.timing"
+            [ngClass]="{ 'is-invalid': submitted && a.timing.errors }">
+          <div *ngIf="submitted && a.timing.errors" class="invalid-feedback">
+            <div *ngIf="a.timing.errors.required"> Timing is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>About</label>
+          <input type="text" class="form-control" formControlName="about" [(ngModel)]="eventsviewdata.about"
+            [ngClass]="{ 'is-invalid': submitted && a.about.errors }">
+          <div *ngIf="submitted && a.about.errors" class="invalid-feedback">
+            <div *ngIf="a.about.errors.required"> about is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>Terms And Conditions</label>
+          <input type="text" class="form-control" formControlName="termsAndConditions"
+            [(ngModel)]="eventsviewdata.termsAndConditions"
+            [ngClass]="{ 'is-invalid': submitted && a.termsAndConditions.errors }">
+          <div *ngIf="submitted && a.termsAndConditions.errors" class="invalid-feedback">
+            <div *ngIf="a.termsAndConditions.errors.required"> Terms And Conditions is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Contact Person</label>
+          <input type="number" class="form-control" formControlName="contactPerson"
+            [(ngModel)]="eventsviewdata.contactPerson" [ngClass]="{ 'is-invalid': submitted && a.contactPerson.errors }">
+          <div *ngIf="submitted && a.contactPerson.errors" class="invalid-feedback">
+            <div *ngIf="a.contactPerson.errors.required"> Contact Person is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>Mobile Number</label>
+          <input type="number" class="form-control" formControlName="mobileNumber"
+            [(ngModel)]="eventsviewdata.mobileNumber" [ngClass]="{ 'is-invalid': submitted && a.mobileNumber.errors }">
+          <div *ngIf="submitted && a.mobileNumber.errors" class="invalid-feedback">
+            <div *ngIf="a.mobileNumber.errors.required"> number is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" [(ngModel)]="eventsviewdata.email"
+            [ngClass]="{ 'is-invalid': submitted && a.email.errors }">
+          <div *ngIf="submitted && a.email.errors" class="invalid-feedback">
+            <div *ngIf="a.email.errors.required"> email is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-4">
+            <label>cost</label>
+            <input type="number" class="form-control" formControlName="cost" [(ngModel)]="eventsviewdata.cost"
+              [ngClass]="{ 'is-invalid': submitted && a.cost.errors }">
+            <div *ngIf="submitted && a.cost.errors" class="invalid-feedback">
+              <div *ngIf="a.cost.errors.required"> cost is required</div>
+            </div>
+          </div>
+        
+        <div class="form-group col-4">
+          <label>Start Date</label>
+          <input type="date" class="form-control" formControlName="startDate" [(ngModel)]="eventsviewdata.startDate"
+            [ngClass]="{ 'is-invalid': submitted && a.startDate.errors }">
+          <div *ngIf="submitted && a.startDate.errors" class="invalid-feedback">
+            <div *ngIf="a.startDate.errors.required"> Start Date is required</div>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>End Date</label>
+          <input type="date" class="form-control" formControlName="endDate" [(ngModel)]="eventsviewdata.endDate"
+            [ngClass]="{ 'is-invalid': submitted && a.endDate.errors }">
+          <div *ngIf="submitted && a.endDate.errors" class="invalid-feedback">
+            <div *ngIf="a.endDate.errors.required"> End Date is required</div>
+          </div>
+        </div>
+    </div>
+      <div class="text-center">
+        <button class="btn  mr-1 save">SAVE</button>
+        <button class="btn closes" type="reset" (click)="onResetss()">Close</button>
+      </div>
+      <br>
+    </form>
+  </div>
+<!-- add events -->
+<div id="id03" class="modal">
+  <form [formGroup]="addeventform" (ngSubmit)="onSubmitss()" class="modal-content animate">
+    <div class="text-center">
+      <label>Add Class </label>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" 
+          [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required"> name is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+      
+      </div>
+
+      <div class="form-group col-4">
+        <label>Title</label>
+        <input type="text" class="form-control" formControlName="title" 
+          [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+          <div *ngIf="f.title.errors.required"> title is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label>Timing</label>
+        <input type="time" class="form-control" formControlName="timing" 
+          [ngClass]="{ 'is-invalid': submitted && f.timing.errors }">
+        <div *ngIf="submitted && f.timing.errors" class="invalid-feedback">
+          <div *ngIf="f.timing.errors.required"> Timing is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+        <label>About</label>
+        <input type="text" class="form-control" formControlName="about" 
+          [ngClass]="{ 'is-invalid': submitted && f.about.errors }">
+        <div *ngIf="submitted && f.about.errors" class="invalid-feedback">
+          <div *ngIf="f.about.errors.required"> about is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+        <label>Terms And Conditions</label>
+        <input type="text" class="form-control" formControlName="termsAndConditions"
+         
+          [ngClass]="{ 'is-invalid': submitted && f.termsAndConditions.errors }">
+        <div *ngIf="submitted && f.termsAndConditions.errors" class="invalid-feedback">
+          <div *ngIf="f.termsAndConditions.errors.required"> Terms And Conditions is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label>Contact Person</label>
+        <input type="text" class="form-control" formControlName="contactPerson"
+          [ngClass]="{ 'is-invalid': submitted && f.contactPerson.errors }">
+        <div *ngIf="submitted && f.contactPerson.errors" class="invalid-feedback">
+          <div *ngIf="f.contactPerson.errors.required"> Contact Person is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+        <label>Mobile Number</label>
+        <input type="number" class="form-control" formControlName="mobileNumber"
+           [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
+        <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+          <div *ngIf="f.mobileNumber.errors.required"> number is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email" 
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required"> email is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row ">
+      <div class="form-group col-4">
+          <label>cost</label>
+          <input type="number" class="form-control" formControlName="cost" 
+            [ngClass]="{ 'is-invalid': submitted && f.cost.errors }">
+          <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
+            <div *ngIf="f.cost.errors.required"> cost is required</div>
+          </div>
+        </div>
+      
+      <div class="form-group col-4">
+        <label>Start Date</label>
+        <input type="date" class="form-control" formControlName="startDate" 
+          [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }">
+        <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+          <div *ngIf="f.startDate.errors.required"> Start Date is required</div>
+        </div>
+      </div>
+      <div class="form-group col-4">
+        <label>End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" 
+          [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }">
+        <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+          <div *ngIf="f.endDate.errors.required"> End Date is required</div>
+        </div>
+      </div>
+  </div>
+  
+
+    <div class="text-center">
+      <button class="btn  mr-1 save">SAVE</button>
+      <button class="btn closes" type="reset" (click)="onResetss()">Close</button>
+    </div>
+    <br>
+  </form>
+</div>
+
+

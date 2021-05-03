@@ -1,0 +1,37 @@
+<!-- <div style="    display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;position: absolute;left: 0;right: 0;">
+    
+        <input type="text" [(ngModel)]="playerName">
+        <button (click)="onSubmit()" >BUY NOW</button>
+
+   
+</div> -->
+<div class="testing_main">
+    <h3 class="w-100 text-center">Item Checkout</h3>
+    <div class="float-left w-100">
+            <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label float-left w-100">Wallet Amount</label>
+                    <input  *ngIf="!show"type="number"  class="form-control float-left" [(ngModel)]="amount">
+                   <span *ngIf="show">{{amount}}</span>
+                   <span> <button  type="button" class="btn btn-danger ml-auto d-block mt-3" (click)="loadNextScript()">Clear</button></span>
+            </div>
+            <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label float-left w-100">Promo code</label>
+                    <input *ngIf="!codepercentage" type="text" class="form-control promo float-left" [(ngModel)]="code">
+                    <span *ngIf="codepercentage">{{code}}</span>
+                    <button  *ngIf="!codepercentage" type="button" class="btn btn-info ml-2" (click)="checkcode()">Add</button>
+            </div>
+
+            <div class="mb-3">
+                    <label *ngIf="codepercentage" for="exampleFormControlInput1" class="form-label promo_label" aria-disabled="true">{{codepercentage}}%
+                            Off</label>
+            </div>
+            <div class="row d-flex pb-3" style="border-bottom: 1px solid #ebebeb;">
+                    <strong class="flex_1 pl-3">Payable Amount</strong>
+                    <span class="mr-3">{{newamount}} $C</span>
+            </div>
+            <button  type="button" class="btn btn-info ml-auto d-block mt-3" (click)="onSubmit()">BUY NOW</button>
+    </div>
+</div>

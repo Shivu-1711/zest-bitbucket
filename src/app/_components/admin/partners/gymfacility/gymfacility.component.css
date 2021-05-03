@@ -1,0 +1,290 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  } 
+  
+  
+th {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+/* / The Modal (background) / */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+  overflow:scroll;
+}
+
+/* // input Size */
+.input
+{
+height: 20px;
+}
+/* / Modal Content/Box / */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; 
+  border: 1px solid #888;
+  padding: 50px 0px 0px 0px;
+  width: 550px; 
+  height: auto;
+  }
+  /* / Modal Content/Box / */
+.modal-contents {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; 
+  border: 1px solid #888;
+  padding: 30px 0px 0px 0px;
+  width: 40%; 
+  height:auto;
+  }
+  
+  /* / Add Zoom Animation / */
+  .animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+  }
+  
+  /* / Change styles for span and cancel button on extra small screens / */
+  @media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+  
+  }
+  .save
+  {
+    background: #72cad2;
+    font-weight: bold;
+    font-size: 16px;
+    border-color: #72cad2;
+  }
+  .closes
+  {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    font-weight: bold;
+  }
+  label
+  {
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  h3
+  {
+    color: #2c3e50;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 40%;
+  margin-left: 10px;
+}
+.arrow
+{
+  cursor: context-menu;
+}
+agm-map {
+  height: 200px;
+  width: 450px;
+}
+.events
+{
+  font-size: small
+}
+
+
+
+
+
+
+/* 
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+
+.container {
+  display: grid;
+  grid-template-columns:  400px;
+  grid-gap: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Baloo Paaji 2', cursive;
+}
+
+.card {
+  background-color:grey;
+  height: 37rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.card__name {
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+
+.card__image {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  border: 5px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+.card__images {
+  height: 100px;
+  width: 250px;
+  border-radius: 10%;
+ 
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+
+.draw-border {
+  box-shadow: inset 0 0 0 4px #58cdd1;
+  color: #58afd1;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0rem;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: #eb196e;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+ 
+  font-size: 30px;
+  color: black;
+} */
+
+.modalss
+{
+  display: none;
+}
+
+.payment_box {
+  width: 430px;
+  background: #fff;
+  border: 1px solid #cecaca;
+  padding: 70px 10px;
+  display:block;
+  margin-top: 250px;
+  margin: auto;
+  
+}
+.img_payment_box_logo {
+  max-width: 100%;
+  height: 50px;
+  display: block;
+  margin: auto;
+}
+.payment_box h1 {
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: bold;
+}
+.payment_box h2 {
+  font-size: 18px;
+  text-align: center;
+  color: #707070;
+  padding-top: 40px;
+  border-bottom: 1px solid #72cad2;
+  width: 182px;
+  display: block;
+  margin: auto;
+  padding-bottom: 10px;
+}
+.img_qr_code {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-top: 45px;
+}
+.payment_box h3 {
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  padding-top: 10px;
+}
+

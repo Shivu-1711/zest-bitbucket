@@ -1,0 +1,311 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+    <div class="d-flex flex-wrap">
+      <div class="col-lg-2 set_nopadding col-md-3 col-4">
+  
+        <app-sidenav></app-sidenav>
+      </div>
+      <div class="col-lg-10 set_nopadding col-md-9 col-8">
+  
+        <app-header></app-header>
+        <div class="tabcontentbox">
+
+            <div class="container-fluid">
+                <div class="gym_user_box">
+                  <div class="gym_user_heading">
+                    <h1>All Testimonial</h1>
+                  </div>
+                  <div class="row">
+                           
+                    <div class="col-lg-9">
+                      
+                    </div>
+                    <div class="col-lg-3">
+                       <button type="button" onclick="document.getElementById('id03').style.display='block'" class="btn save btn-lg" >Add Testimonial</button>
+                    </div>
+                  </div>
+      
+                  <mat-form-field>
+      
+      
+                    <mat-label class="label">SEARCH</mat-label>
+                    <input class="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                  </mat-form-field>
+                  <br>
+                  <br>
+      
+                  <table mat-table [dataSource]="rowData" matSort class="mat-elevation-z8">
+      
+      
+      
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+      
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="designation">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+                    </ng-container>
+      
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="content">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Content </th>
+                      <td mat-cell *matCellDef="let element">   {{element.content.slice(0, 100)}}</td>
+                    </ng-container>
+      
+                   
+      
+                    <ng-container matColumnDef="Actions">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                          <mat-icon class="arrow">more_vert</mat-icon>
+                        </div>
+                        <mat-menu #menu="matMenu">
+                          <button (click)="view(element)" data-toggle="modal" data-target="#exampleModal" mat-menu-item>
+                            <mat-icon>visibility</mat-icon>
+                            <span>View Testimonial</span>
+                          </button>
+                          <button (click)="edit(element)" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Update Testimonial</span>
+                          </button>
+                          <button (click)="delete(element.id)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete Testimonial</span>
+                          </button>
+                        </mat-menu>
+      
+                      </td>
+                    </ng-container>
+      
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+      
+                  </table>
+      
+                  <mat-paginator [pageSizeOptions]="[10,15,20,25]" showFirstLastButtons></mat-paginator>
+      
+      
+      
+                </div>
+      
+              </div>
+        </div><!-- tabcontentbox-end -->
+
+
+
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- //view blog --> 
+<div id="id01" class="modal">
+  <form class="modal-content animate">
+    <div class="text-center">
+      <label>View Testimonial</label>
+    </div>
+    <div class="text-center">
+      <img style="max-width: 200px; max-height: 150px; min-height: 149px; min-width: 199px;"
+        src="{{testimonialdata.imageUrl}}">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-2"></div>
+      <div class="form-group col-8">
+        <label>Name</label>
+        <input type="text" class="form-control" value={{testimonialdata.name}} aria-describedby="emailHelp" placeholder=""
+          readonly>
+      </div>
+
+      <div class="form-group col-2"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-2"></div>
+      <div class="form-group col-8">
+        <label>Designation</label>
+        <input type="email" class="form-control" value={{testimonialdata.designation}} aria-describedby="emailHelp"
+          placeholder="" readonly>
+      </div>
+      <div class="form-group col-1"></div>
+    </div>
+    
+    <div class="form-row ">
+      <div class="form-group col-2"></div>
+      <div class="form-group col-8">
+        <label>Content</label>
+        <textarea class="form-control" style="max-height:130px;" placeholder="message"
+          readonly>{{testimonialdata.content}}</textarea>
+      </div>
+      <div class="form-group col-2"></div>
+    </div>
+    <div class="text-center">
+
+      <button class="btn closes" (click)="onResets()">Close</button>
+    </div>
+    <br>
+  </form>
+</div>
+
+<!-- edit form blog -->
+<div id="id02" class="modal">
+    <form [formGroup]="editstestform" (ngSubmit)="onSubmits()" class="modal-contents animate">
+      <div class="form-row">
+        <div class="form-group col-3"></div>
+        <div class="form-group col-6">
+          <h3>Edit Blog Detail</h3>
+        </div>
+        <div class="form-group col-3"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+          <label> name</label>
+          <input type="text" formControlName="name" [(ngModel)]="datas.name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && a.name.errors }" />
+          <div *ngIf="submitted && a.name.errors" class="invalid-feedback">
+            <div *ngIf="a.name.errors.required"> name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+         
+        </div>
+        <div class="form-group col-1"> </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+          <label> designation</label>
+          <input type="text" formControlName="designation" [(ngModel)]="datas.designation" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && a.designation.errors }" />
+          <div *ngIf="submitted && a.designation.errors" class="invalid-feedback">
+            <div *ngIf="a.designation.errors.required">designation is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+  
+        </div>
+        <div class="form-group col-1"> </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-8">
+          <label> Content</label>
+          <textarea formControlName="content" class="form-control" style="max-height:130px;" [(ngModel)]="datas.content"
+            [ngClass]="{ 'is-invalid': submitted && a.content.errors }" placeholder="message"></textarea>
+          <div *ngIf="submitted && a.content.errors" class="invalid-feedback">
+            <div *ngIf="a.content.errors.required">Content is required</div>
+          </div>
+  
+  
+        </div>
+        <div class="form-group col-1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-3"> </div>
+  
+        <div class="form-group col-6">
+  
+  
+          <!-- Image Preview -->
+          <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+            <br> <img style="max-width: 250px; max-height: 170px; min-height: 149px; min-width: 199px;" [src]="imageURL"
+              [alt]="editstestform.value.name">
+          </div>
+          <br>
+          <input type="file" id="uploadFile" accept="image/*" (change)="showPreview($event)" />
+        </div>
+        <div class="form-group col-3"> </div>
+      </div>
+  
+      <br>
+      <div class="text-center">
+        <button class="btn  mr-1 save">SAVE</button>
+        <button class="btn closes" type="button" (click)="onResetss()">Close</button>
+      </div>
+      <br>
+    </form>
+  </div>
+  <!-- add  -->
+  <div id="id03" class="modal">
+    <form [formGroup]="addtest" (ngSubmit)="onSubmit()" class="modal-contents animate">
+      <div class="form-row">
+        <div class="form-group col-3"></div>
+        <div class="form-group col-6">
+          <h3>Add Testimonial Detail</h3>
+        </div>
+        <div class="form-group col-3"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+          <label> Name</label>
+          <input type="text" formControlName="name"  class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && g.name.errors }" />
+          <div *ngIf="submitted && g.name.errors" class="invalid-feedback">
+            <div *ngIf="g.name.errors.required"> name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+         
+        </div>
+        <div class="form-group col-1"> </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+          <label> Designation</label>
+          <input type="text" formControlName="designation"  class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && g.designation.errors }" />
+          <div *ngIf="submitted && g.designation.errors" class="invalid-feedback">
+            <div *ngIf="g.designation.errors.required">designation is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+  
+        </div>
+        <div class="form-group col-1"> </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-8">
+          <label> Content</label>
+          <textarea formControlName="content" class="form-control" style="max-height:130px;" 
+            [ngClass]="{ 'is-invalid': submitted && g.content.errors }" placeholder="message"></textarea>
+          <div *ngIf="submitted && g.content.errors" class="invalid-feedback">
+            <div *ngIf="g.content.errors.required">Content is required</div>
+          </div>
+  
+  
+        </div>
+        <div class="form-group col-1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-3"> </div>
+  
+        <div class="form-group col-6">
+  
+            <input  type="file" accept="image/*" (change) = "fileChangeEvent($event)">
+         
+        </div>
+        <div class="form-group col-3"> </div>
+      </div>
+  
+      <br>
+      <div class="text-center">
+        <button class="btn  mr-1 save">SAVE</button>
+        <button class="btn closes" type="button" (click)="onResetsss()">Close</button>
+      </div>
+      <br>
+    </form>
+  </div>

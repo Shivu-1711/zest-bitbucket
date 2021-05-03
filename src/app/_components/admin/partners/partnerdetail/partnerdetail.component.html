@@ -1,0 +1,670 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+    <div class="d-flex flex-wrap">
+        <div class="col-lg-2 set_nopadding col-md-3 col-4">
+            
+           <app-sidenav></app-sidenav>
+        </div>
+        <div class="col-lg-10 set_nopadding col-md-9 col-8">
+            
+            <app-header></app-header>    
+            
+
+            <div class="tabcontentbox">
+               
+                <div class="partners_details_sec">
+                    <div class="container-fluid">
+                       
+                        <div class="partners_details_box">
+                            <div>
+                                <h5 style="color: #71cad2; padding-left: 17px;"><a routerLink="/partners">Partners</a> /<a>Fitness Locations</a></h5>
+                              </div>
+                            <div class="partners_details_heading mb-4">
+                                <h1 style="color: black;">Partner Details</h1>  
+                     </div>
+                            <div class="partners_details_heading mb-4">
+                                <h1>{{partnerdetail.uniqueKey}}  </h1>  
+                                <h1>{{partnerdetail.partnerName}} <span><i onclick="document.getElementById('id02').style.display='block'" class="fas fa-edit "></i></span><span class="pl-2"><i onclick="document.getElementById('id03').style.display='block'" class="fas fa-key"></i></span> </h1>  
+                           
+                                
+                                <h2><span><i class="fas fa-map-marker-alt"></i></span> {{partnerdetail.address}}</h2>
+                              
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="partners_details_inner_box">
+                                        <div class="icon_circle">
+                                            <span><i class="fas fa-street-view"></i></span>
+                                        </div>
+                                        <h1>Total Visit</h1>
+                                        <h2>{{partnerdetail.totalDebit}}</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="partners_details_inner_box">
+                                        <div class="icon_circle">
+                                            <img src="../../../../../assets/img/gym.png" class="img-fluid">
+                                        </div>
+                                        <h1>Total Gym</h1>
+                                        <h2>{{partnerdetail.totalFacility}}</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="partners_details_inner_box">
+                                        <div class="icon_circle">
+                                            <span><i class="fas fa-eye"></i></span>
+                                        </div>
+                                        <h1>Total Review</h1>
+                                        <h2>{{partnerdetail.totalReview}}</h2>
+                                    </div>
+                                </div>
+                            </div><!-- row-end -->
+                        </div>
+                    </div>
+                </div><!-- partners_details-end -->
+                <div class="bank_details_sec mt-4 mb-4">
+                    <div class="container-fluid">
+                       <div class="bank_details_box" *ngIf="visible">
+                            <div class="bank_details_box_heading">
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-6"><h1>Banking Details</h1></div>
+                                    <div class="col-lg-3">
+                                      <a routerLink="/transaction/{{partnerdetail.id}}"> <button type="button" class="btn save btn-lg" >View Transaction</button></a>
+                                    </div>
+                                  </div>
+                                
+                                <h3>{{partnerdetail.partnerName}}<a><span><i onclick="document.getElementById('id04').style.display='block'" class="far fa-edit"></i></span> Edit</a></h3>
+                                <h4>Account Holder Name-<b>{{bankdetails.holderName}}</b></h4>
+                                <h4>Account no. -<b>{{bankdetails.nameOfBank}}</b></h4>
+                                <h4>Contact number. -<b>{{bankdetails.contactNo}}</b></h4>
+
+                                <h4>Bank Code -<b>{{bankdetails.accountNumber}}</b> </h4>
+                                <h4>Bank Name -<b>{{bankdetails.swiftCode}}</b></h4>
+                                <h4>Associated email id-<b>{{bankdetails.associatedEmailId}}</b></h4>
+                                <h4>Transit no -<b>{{bankdetails.transitNo}}</b></h4>
+                            </div>
+                        </div>
+                        <div class="bank_details_box" *ngIf="visible1">
+                            <div class="bank_details_box_heading" >
+                               
+                                <h1>Account Details</h1>
+                               <br>
+                               <h3>{{partnerdetail.partnerName}} </h3>
+                               <h4>Banking Detail not Available add Banking Detail on click below button</h4>
+                               <h1><button onclick="document.getElementById('id05').style.display='block'"  class="save">ADD Banking Detail</button> </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gym_facility_sec">
+                    <div class="container-fluid">
+                        <br>
+                        <div class="gym_user_box">
+                        <div class="gym_user_heading">
+                            <h1>Fitness Center Of this Partner</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <mat-form-field>
+                          
+                         
+                                    <mat-label class="label">SEARCH</mat-label>
+                                    <input class="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-lg-2">
+                                <!-- <h3>Facility Of this Partner</h3> -->
+                            </div>
+                            <div class="col-lg-3">
+                               <button type="button" (click)="addfacility()"class="btn save btn-lg" >Add Fitness Center</button>
+                            </div>
+                          </div>
+                       
+                        
+                        
+                        <table mat-table  [dataSource]="rowData" matSort  class="mat-elevation-z8">
+                        
+                          <!-- Position Column -->
+                        
+                          <ng-container matColumnDef="ZestID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ZestID </th>
+                            <td mat-cell *matCellDef="let element"> {{element.uniqueKey}} </td>
+                          </ng-container>
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="facilityName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fitness Center Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.facilityName}} </td>
+                          </ng-container>
+                        
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="address">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>  Address </th>
+                            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                          </ng-container>
+                        
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="city">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+                            <td mat-cell *matCellDef="let element"> {{element.city}}  </td>
+                          </ng-container>
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                            <td mat-cell *matCellDef="let element"> <mat-slide-toggle [color]="color"
+                              [checked]="element.active"
+                              (click)="status(element.active,element.id)" ></mat-slide-toggle></td>
+                          </ng-container>
+                          <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Details</th>
+                            <td mat-cell *matCellDef="let element"> <a routerLink="/gym-facility/{{element.id}}/{{partenrid}}"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+                      
+                             </td>
+                          </ng-container>
+                      
+                         
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        
+                          <!-- Row shown when there is no matching data. -->
+                          <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                          </tr>
+                         
+                        </table>
+                        <mat-spinner class="messagep" *ngIf="spinner"></mat-spinner>
+                        <p class="messagep">{{message}}</p>
+                          <mat-paginator [pageSizeOptions]="[10,15,20,25]" showFirstLastButtons></mat-paginator>
+                        
+                        
+                        
+                        
+                     
+                     
+                     </div>
+                     
+                        </div>
+                </div>
+            </div><!-- tabcontentbox-end -->
+            
+
+            
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+
+<!-- faciltyform add -->
+<div id="id01" class="modal">
+  
+    <form [formGroup]="facilityForm" (ngSubmit)="onSubmit()" class="modal-content animate">
+      <div class="form-row">
+        <div class="form-group col-3"></div>
+        <div class="form-group col-6"> <h3>Add Fitness Center</h3></div>
+        <div class="form-group col-3"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-1"></div>
+          <div class="form-group col-5" >
+              <label> Fitness Center Name</label>
+              <input type="text" formControlName="facilityName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.facilityName.errors }" />
+              <div *ngIf="submitted && f.facilityName.errors" class="invalid-feedback">
+                  <div *ngIf="f.facilityName.errors.required"> Fitness Center Name is required</div>
+              </div>
+          </div>
+          <div class="form-group col-5">
+              <label> Address</label>
+              <input type="text" formControlName="address" placeholder="select from below map " class="form-control" [(ngModel)]="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" readonly />
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                  <div *ngIf="f.address.errors.required">address is required</div>
+              </div>
+          </div>
+          <div class="form-group col-1"> </div>
+      </div>
+      
+    
+  
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> City</label>
+        <select formControlName="city" class="form-control"  [(ngModel)]="partnerdetails.city" [ngClass]="{ 'is-invalid': submitted && g.city.errors }">
+            <option *ngFor="let i of city" value={{i.id}}>{{i.name}}</option>
+                        
+       </select>
+       <div *ngIf="submitted && g.city.errors" class="invalid-feedback">
+      <div *ngIf="g.city.errors.required">city is required</div>
+      </div>
+
+
+
+
+        
+  </div>
+  <div class="form-group col-5">
+    <label> Mobile No</label>
+            <input type="number" formControlName="phoneNo"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNo.errors }" />
+            <div *ngIf="submitted && f.phoneNo.errors" class="invalid-feedback">
+                <div *ngIf="f.phoneNo.errors.required"> Mobile Number is required</div>
+                <div *ngIf="f.phoneNo.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+            </div>
+  </div>
+    <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+      <label> Open Time</label>
+      <input type="time" formControlName="openTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.openTime.errors }" />
+      <div *ngIf="submitted && f.openTime.errors" class="invalid-feedback">
+          <div *ngIf="f.openTime.errors.required">openTime is required</div>
+      </div>
+  </div>
+  <div class="form-group col-5">
+    <label>Close Time </label>
+    <input type="time" formControlName="closeTime"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.closeTime.errors }" />
+    <div *ngIf="submitted && f.closeTime.errors" class="invalid-feedback">
+        <div *ngIf="f.closeTime.errors.required">closeTime is required</div>
+    </div>
+</div>
+    <div class="form-group col-1"> </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> WebsiteUrl</label>
+        <input type="text" formControlName="websiteUrl"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.websiteUrl.errors }" />
+        <div *ngIf="submitted && f.websiteUrl.errors" class="invalid-feedback">
+            <div *ngIf="f.websiteUrl.errors.required"> websiteUrl is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+        <label> latitude</label>
+        <input type="text" formControlName="latitude"  class="form-control" [(ngModel)]="latitude" [ngClass]="{ 'is-invalid': submitted && f.latitude.errors }" readonly/>
+        <div *ngIf="submitted && f.latitude.errors" class="invalid-feedback">
+            <div *ngIf="f.latitude.errors.required"> latitude is required</div>
+        </div>
+        
+    </div>
+    <div class="form-group col-1"></div>
+</div>
+      <br>
+      <div class="form-row">
+          
+    <div class="form-group col-1"></div>
+        <div class="form-group col-6">
+            
+            <label> Address</label>
+            <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+          </div>
+        
+          <div class="form-group col-4">
+            <label> longitude</label>
+            <input type="text" formControlName="longitude"  class="form-control" [(ngModel)]="longitude" [ngClass]="{ 'is-invalid': submitted && f.latitude.errors }" readonly/>
+            <div *ngIf="submitted && f.longitude.errors" class="invalid-feedback">
+                <div *ngIf="f.longitude.errors.required"> longitude is required</div>
+            </div>
+          </div>
+        <div class="form-group col-1"></div>
+          
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-10">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map>
+        </div>
+
+        <div class="form-group col-1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-10">
+            <h5>Plz Set the Map Marker to your Location</h5>
+        </div>
+
+        <div class="form-group col-1"></div>
+      </div>
+
+     
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onReset()">Close</button>
+      </div>
+      <br>
+
+  </form>
+  
+  </div>
+
+  
+
+<!--edit partner form  -->  
+
+
+<div id="id02" class="modal">
+  
+    <form [formGroup]="partnereditForm" (ngSubmit)="onSubmits()" class="modal-contents animate">
+      <div class="form-row">
+        <div class="form-group col-4"></div>
+        <div class="form-group col-4"> <h3>Edit Partner</h3></div>
+        <div class="form-group col-4"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-1"></div>
+          <div class="form-group col-5" >
+              <label> Partner Name</label>
+              <input type="text" formControlName="partnerName" [(ngModel)]="partnerdetails.partnerName" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.partnerName.errors }" />
+              <div *ngIf="submitted && g.partnerName.errors" class="invalid-feedback">
+                  <div *ngIf="g.partnerName.errors.required"> Name is required</div>
+              </div>
+          </div>
+          <div class="form-group col-5">
+              <label> UserName</label>
+              <input type="text" formControlName="userName" [(ngModel)]="partnerdetails.userName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && g.userName.errors }" />
+              <div *ngIf="submitted && g.userName.errors" class="invalid-feedback">
+                  <div *ngIf="g.userName.errors.required">userName is required</div>
+              </div>
+          </div>
+          <div class="form-group col-1"> </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+          <label> Official Email</label>
+          <input type="text" formControlName="officialEmail"  [(ngModel)]="partnerdetails.officialEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.officialEmail.errors }" />
+          <div *ngIf="submitted && g.officialEmail.errors" class="invalid-feedback">
+              <div *ngIf="g.officialEmail.errors.required">officialEmail is required</div>
+              <div *ngIf="g.officialEmail.errors.pattern">Please, Enter valid Email</div>
+          </div>
+      </div>
+      <div class="form-group col-5">
+        <label>City</label>
+        <select formControlName="city" class="form-control"  [(ngModel)]="partnerdetails.city" [ngClass]="{ 'is-invalid': submitted && g.city.errors }">
+             <option *ngFor="let i of city" value={{i.id}}>{{i.name}}</option>
+                         
+        </select>
+        <div *ngIf="submitted && g.city.errors" class="invalid-feedback">
+       <div *ngIf="g.city.errors.required">city is required</div>
+       </div>
+    </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Mobile No</label>
+        <input type="number" formControlName="contactNo" [(ngModel)]="partnerdetails.contactNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.contactNo.errors }" />
+        <div *ngIf="submitted && g.contactNo.errors" class="invalid-feedback">
+            <div *ngIf="g.contactNo.errors.required">Mobile No is required</div>
+            <div *ngIf="g.contactNo.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+      <label>Address </label>
+      <input type="text" formControlName="address" [(ngModel)]="partnerdetails.address" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.address.errors }" />
+      <div *ngIf="submitted && g.address.errors" class="invalid-feedback">
+          <div *ngIf="g.address.errors.required">address is required</div>
+      </div>
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+      <label> Province</label>
+      <input type="text" formControlName="state"  [(ngModel)]="partnerdetails.state" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.state.errors }" />
+      <div *ngIf="submitted && g.state.errors" class="invalid-feedback">
+          <div *ngIf="g.state.errors.required">state is required</div>
+      </div>
+  </div>
+  <div class="form-group col-5">
+    <!-- <label>Country </label>
+    <input type="text" formControlName="country" [(ngModel)]="partnerdetails.country"  class="form-control" [ngClass]="{ 'is-invalid': submitted && g.country.errors }" />
+    <div *ngIf="submitted && g.country.errors" class="invalid-feedback">
+        <div *ngIf="g.country.errors.required">country is required</div>
+    </div> -->
+  </div>
+    <div class="form-group col-1"> </div>
+  </div>
+  
+ 
+     
+      <br>
+      
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onResets()">Close</button>
+      </div>
+      <br>
+  </form>
+  
+  </div>
+  
+  
+  <!-- password reset -->
+<div id="id03" class="modal">
+  
+    <form [formGroup]="passwordform" (ngSubmit)="onSubmitss()" class="modal-contentss animate">
+      <div class="form-row">
+        <div class="form-group col-2"></div>
+        <div class="form-group col-8"> <h4>Password Change</h4></div>
+        <div class="form-group col-2"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-2"></div>
+          <div class="form-group col-8" >
+              <label>New Password</label>
+              <input type="password" formControlName="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && p.password.errors }" />
+              <div *ngIf="submitted && p.password.errors" class="invalid-feedback">
+                  <div *ngIf="p.password.errors.required"> password is required</div>
+              </div>
+          </div>
+          
+          <div class="form-group col-2"> </div>
+      </div>
+      <br>
+      
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onResetss()">Close</button>
+      </div>
+      <br>
+  </form>
+  
+  </div>
+
+
+<!-- bankdetail edit -->
+<div id="id04" class="modal">
+  
+    <form [formGroup]="bankform" (ngSubmit)="onSubmitsss()" class="modal-content animate"  >
+      <div class="form-row">
+        <div class="form-group col-4"></div>
+        <div class="form-group col-5"> <h3>Edit Bank Detail</h3></div>
+        <div class="form-group col-3"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-1"></div>
+          <div class="form-group col-5" >
+              <label> Name Of Bank</label>
+              <input type="text" formControlName="nameOfBank" [(ngModel)]="bankdetails.nameOfBank"  class="form-control" [ngClass]="{ 'is-invalid': submitted && a.nameOfBank.errors }" />
+              <div *ngIf="submitted && a.nameOfBank.errors" class="invalid-feedback">
+                  <div *ngIf="a.nameOfBank.errors.required"> nameOfBank is required</div>
+              </div>
+          </div>
+          <div class="form-group col-5">
+              <label> Account Number</label>
+              <input type="text" formControlName="accountNumber"  [(ngModel)]="bankdetails.accountNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && a.accountNumber.errors }" />
+              <div *ngIf="submitted && a.accountNumber.errors" class="invalid-feedback">
+                  <div *ngIf="a.accountNumber.errors.required">accountNumber is required</div>
+              </div>
+          </div>
+          <div class="form-group col-1"> </div>
+      </div>
+      
+    
+  
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Swift Code</label>
+              <input type="text" formControlName="swiftCode"  [(ngModel)]="bankdetails.swiftCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && a.swiftCode.errors }" />
+              <div *ngIf="submitted && a.swiftCode.errors" class="invalid-feedback">
+                  <div *ngIf="a.swiftCode.errors.required">swiftCode is required</div>
+              </div>
+  </div>
+  <div class="form-group col-5">
+    <label> Associated Email Id</label>
+    <input type="text" formControlName="associatedEmailId" [(ngModel)]="bankdetails.associatedEmailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && a.associatedEmailId.errors }" />
+    <div *ngIf="submitted && a.associatedEmailId.errors" class="invalid-feedback">
+        <div *ngIf="a.associatedEmailId.errors.required">email is required</div>
+    </div>
+  </div>
+    <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Transit No</label>
+              <input type="text" formControlName="transitNo" [(ngModel)]="bankdetails.transitNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && a.transitNo.errors }" />
+              <div *ngIf="submitted && a.transitNo.errors" class="invalid-feedback">
+                  <div *ngIf="a.transitNo.errors.required">transit no is required</div>
+              </div>
+  </div>
+  
+    <div class="form-group col-6"> </div>
+  </div>
+  <div class="form-row" >
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5" >
+        <label> Account holder name</label>
+        <input type="text" formControlName="holdername" [(ngModel)]="bankdetails.holderName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && a.holdername.errors }" />
+        <div *ngIf="submitted && a.holdername.errors" class="invalid-feedback">
+            <div *ngIf="a.holdername.errors.required"> Account holder name is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+        <label> Contact Number</label>
+        <input type="text" formControlName="contactno"  [(ngModel)]="bankdetails.contactNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && a.contactno.errors }" />
+        <div *ngIf="submitted && a.contactno.errors" class="invalid-feedback">
+            <div *ngIf="a.contactno.errors.required">contactno is required</div>
+        </div>
+    </div>
+    <div class="form-group col-1"> </div>
+</div>
+      <br>
+      
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onResetsss()">Close</button>
+      </div>
+      <br>
+  </form>
+  
+  </div>  
+
+  <!-- bankdetail view -->
+<div id="id05" class="modal">
+  
+    <form [formGroup]="addbankform" (ngSubmit)="onSubmitdata()" class="modal-content animate" >
+      <div class="form-row">
+        <div class="form-group col-4"></div>
+        <div class="form-group col-4"> <h3>Add Banking Details</h3></div>
+        <div class="form-group col-4"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-1"></div>
+          <div class="form-group col-5" >
+              <label> Name Of Bank</label>
+              <input type="text" formControlName="nameOfBank"   class="form-control" [ngClass]="{ 'is-invalid': submitted && b.nameOfBank.errors }" />
+              <div *ngIf="submitted && b.nameOfBank.errors" class="invalid-feedback">
+                  <div *ngIf="b.nameOfBank.errors.required"> nameOfBank is required</div>
+              </div>
+          </div>
+          <div class="form-group col-5">
+              <label> Account Number</label>
+              <input type="number" formControlName="accountNumber"   class="form-control" [ngClass]="{ 'is-invalid': submitted && b.accountNumber.errors }" />
+              <div *ngIf="submitted && b.accountNumber.errors" class="invalid-feedback">
+                  <div *ngIf="b.accountNumber.errors.required">accountNumber is required</div>
+              </div>
+          </div>
+          <div class="form-group col-1"> </div>
+      </div>
+      
+    
+  
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Bank Code</label>
+              <input type="text" formControlName="swiftCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && b.swiftCode.errors }" />
+              <div *ngIf="submitted && b.swiftCode.errors" class="invalid-feedback">
+                  <div *ngIf="b.swiftCode.errors.required">swiftCode is required</div>
+              </div>
+  </div>
+  <div class="form-group col-5">
+    <label> Associated Email id</label>
+    <input type="text" formControlName="associatedEmailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && b.associatedEmailId.errors }" />
+    <div *ngIf="submitted && b.associatedEmailId.errors" class="invalid-feedback">
+        <div *ngIf="b.associatedEmailId.errors.required">email is required</div>
+    </div>
+  </div>
+    
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Transit No</label>
+              <input type="text" formControlName="transitNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && b.transitNo.errors }" />
+              <div *ngIf="submitted && b.transitNo.errors" class="invalid-feedback">
+                  <div *ngIf="b.transitNo.errors.required">transit no is required</div>
+              </div>
+  </div>
+  
+    <div class="form-group col-5">
+        <label> Account holder name</label>
+        <input type="text" formControlName="holdername" [(ngModel)]="bankdetails.holderName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && b.holdername.errors }" />
+        <div *ngIf="submitted && b.holdername.errors" class="invalid-feedback">
+            <div *ngIf="b.holdername.errors.required"> Account holder name is required</div>
+        </div>
+    </div>
+    <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row" >
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5" >
+        <!-- <label> Account holder name</label>
+        <input type="text" formControlName="holdername" [(ngModel)]="bankdetails.holderName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && b.holdername.errors }" />
+        <div *ngIf="submitted && b.holdername.errors" class="invalid-feedback">
+            <div *ngIf="b.holdername.errors.required"> Account holder name is required</div>
+        </div> -->
+    </div>
+    <div class="form-group col-5">
+        <label> Contact Number</label>
+        <input type="text" formControlName="contactno"  [(ngModel)]="bankdetails.contactNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && b.contactno.errors }" />
+        <div *ngIf="submitted && b.contactno.errors" class="invalid-feedback">
+            <div *ngIf="b.contactno.errors.required">contactNo is required</div>
+        </div>
+    </div>
+    <div class="form-group col-1"> </div>
+</div>
+      <br>
+      
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onResetssss()">Close</button>
+      </div>
+      <br>
+  </form>
+  
+  </div> 
+
+  
+  

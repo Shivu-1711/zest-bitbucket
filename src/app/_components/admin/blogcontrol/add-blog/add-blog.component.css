@@ -1,0 +1,68 @@
+.ng-hide {
+  opacity:0;
+  min-height:50px;
+  position: absolute;
+    top: 50px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.form_maindiv .addblog_form .upload_div , .addblog_btn{
+  cursor: pointer;
+    display: inline-block;
+    background: #33A5B5;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+    box-shadow: #4169e129 0 5px 6px;
+    margin: 10px 0 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    width: 200px;
+    height:50px;
+    text-align: center;
+    line-height: 1;
+}
+.form_maindiv .addblog_form .upload_text
+{
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+    justify-content: center;
+    min-height: 50px;
+        position: absolute;
+    top: 51px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+         cursor: pointer;
+}
+.form_maindiv .addblog_form .addblog_input {
+  min-height:45px!important;
+}
+.form_maindiv .addblog_form .cancel_btn {
+  background: #dbdbdd;
+    margin-left: 20px !important;
+    color: #111;
+}
+
+.header {  
+  margin-top: 100px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.html-header {
+  margin: 15px 0 5px;
+}
+
+.html {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: #f1f1f1;
+  min-height: 20px;
+  max-height: 10rem;
+  overflow: auto;
+}

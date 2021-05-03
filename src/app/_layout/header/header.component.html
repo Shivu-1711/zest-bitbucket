@@ -1,0 +1,339 @@
+<div class="my_nav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav_list">
+              <li class="nav-item">
+                <div class="input-group search_bar_width">
+                  <input type="text" class="form-control top_search_bar" placeholder="Search here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <span class="search_icon_input" id="basic-addon2"><i class="fas fa-search"></i></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+              
+
+                <div class="topbar-divider d-none d-sm-block"></div>
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                  <a class="nav-link dropdown-toggle arrow"  id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"  style="color: #72cad2"><b>{{userdetail.name}} {{partnerdetails.partnerName}}</b></span>
+                    <!-- <img class="img-profile rounded-circle" src=""> -->
+                    <i class="fa fa-list "  style="color: #72cad2" aria-hidden="true"></i>
+                  </a>
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a  class="dropdown-item arrow"(click)="edits()" >
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Profile
+                    </a>
+                  
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item arrow"  data-toggle="modal" (click)="logout()">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Logout
+                    </a>
+                  </div>
+                </li>
+
+              </ul>
+          </div>
+        </nav>
+    </div>
+</div><!-- my_nav-end -->
+
+
+<!-- admin superadmin form edit -->
+<div id="uid01" class="modal">
+  
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="modal-content animate">
+    <div class="form-row">
+      <div class="form-group col-4"></div>
+      <div class="form-group col-4"> <h3>Edit Admin</h3></div>
+      <div class="form-group col-4"></div>
+    </div> 
+    <div class="form-row" >
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5" >
+            <label> Name</label>
+            <input type="text" formControlName="name" [(ngModel)]="userdetail.name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required"> Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label> Contact Number</label>
+            <input type="number" formControlName="contactNumber" [(ngModel)]="userdetail.contactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactNumber.errors }" />
+            <div *ngIf="submitted && f.contactNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.contactNumber.errors.required">Last Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Address</label>
+        <input type="text" formControlName="address" [(ngModel)]="userdetail.address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">address is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+      <label>Username </label>
+      <input type="text" formControlName="userName" [(ngModel)]="userdetail.userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+      <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+          <div *ngIf="f.userName.errors.required">userName is required</div>
+      </div>
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Email</label>
+        <input type="text" formControlName="email" [(ngModel)]="userdetail.email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required"> email is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+      
+    </div>
+    <div class="form-group col-1"></div>
+</div>
+
+
+   
+    <br>
+    <br>
+    <br>
+    
+    <div class="text-center">
+        <button class="btn  mr-1 save">SAVE</button>
+        <button class="btn closes" type="reset" (click)="onReset()">Close</button>
+    </div>
+    <br>
+</form>
+
+</div>
+
+<!-- admin  form view -->
+<div id="uid02" class="modal">
+  
+  <form  class="modal-content animate">
+    <div class="form-row">
+      <div class="form-group col-4"></div>
+      <div class="form-group col-4"> <h3>View Profile</h3></div>
+      <div class="form-group col-4"(click)="edit()"><span><i class="fas fa-edit  fa-2x" title="Edit Profile" style="color:#72cad2"></i></span></div>
+    </div> 
+    <div class="form-row" >
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5" >
+            <label> Name</label>
+            <input type="text"  value="{{userdetail.name}}" class="form-control" readonly />
+            
+        </div>
+        <div class="form-group col-5">
+            <label> Contact Number</label>
+            <input type="number"  value="{{userdetail.contactNumber}}" class="form-control" readonly />
+            
+        </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Address</label>
+        <input type="text"  value="{{userdetail.address}}" class="form-control" readonly />
+        
+    </div>
+    <div class="form-group col-5">
+      <label>Username </label>
+      <input type="text"  value="{{userdetail.userName}}" class="form-control" readonly />
+    
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Email</label>
+        <input type="text"  value="{{userdetail.email}}" class="form-control" readonly />
+        
+    </div>
+    <div class="form-group col-5">
+      
+    </div>
+    <div class="form-group col-1"></div>
+</div>
+
+
+   
+    <br>
+    <br>
+    <br>
+    
+    <div class="text-center">
+      
+        <button class="btn closes" type="reset" (click)="onReset()">Close</button>
+    </div>
+    <br>
+</form>
+
+</div>
+
+<!-- admin superadmin form view -->
+<div id="uid04" class="modal">
+  
+  <form  class="modal-content animate">
+    <div class="form-row">
+      <div class="form-group col-4"></div>
+      <div class="form-group col-4"> <h3>View Profile</h3></div>
+      <div class="form-group col-4"></div>
+    </div> 
+    <div class="form-row" >
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5" >
+            <label> Name</label>
+            <input type="text"  value="{{userdetail.name}}" class="form-control" readonly />
+            
+        </div>
+        <div class="form-group col-5">
+            <label> Contact Number</label>
+            <input type="number"  value="{{userdetail.contactNumber}}" class="form-control" readonly />
+            
+        </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Email</label>
+        <input type="text"  value="{{userdetail.email}}" class="form-control" readonly />
+        
+    </div>
+    <div class="form-group col-5">
+      <label>Username </label>
+      <input type="text"  value="{{userdetail.userName}}" class="form-control" readonly />
+    
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  
+
+
+   
+    <br>
+    <br>
+    <br>
+    
+    <div class="text-center">
+      
+        <button class="btn closes" type="reset" (click)="onReset()">Close</button>
+    </div>
+    <br>
+</form>
+
+</div>
+
+<!-- view partner -->
+<div id="uid03" class="modal">
+  
+  <form class="modal-contents animate">
+    <div class="form-row">
+      <div class="form-group col-4"></div>
+      <div class="form-group col-4"> <h3>view Partner</h3></div>
+      <div class="form-group col-4" ></div>
+    </div> 
+    <div class="form-row" >
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5" >
+            <label> Partner Name</label>
+            <input type="text"  value="{{partnerdetails.partnerName}}" class="form-control" readonly />
+           
+        </div>
+        <div class="form-group col-5">
+            <label> UserName</label>
+            <input type="text"  value="{{partnerdetails.userName}}"  class="form-control" readonly  />
+           
+        </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Official Email</label>
+        <input type="text"   value="{{partnerdetails.officialEmail}}" class="form-control"  readonly  />
+        
+    </div>
+    <div class="form-group col-5">
+      
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+      <label> Contact No</label>
+      <input type="number"  value="{{partnerdetails.contactNo}}" class="form-control"   readonly/>
+     
+  </div>
+  <div class="form-group col-5">
+    <label>Address </label>
+    <input type="text"  value="{{partnerdetails.address}}" class="form-control" readonly />
+    
+</div>
+    <div class="form-group col-1"> </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-1"></div>
+  <div class="form-group col-5">
+    <label> State</label>
+    <input type="text"  value="{{partnerdetails.state}}" class="form-control" readonly />
+    
+</div>
+<div class="form-group col-5">
+  <label>Country </label>
+  <input type="text"  value="{{partnerdetails.country}}"  class="form-control" readonly />
+  
+</div>
+  <div class="form-group col-1"> </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-1"></div>
+  <div class="form-group col-5">
+    <label> PerDayCost</label>
+    <input type="number"  value="{{partnerdetails.perDayCost}}"  class="form-control" readonly />
+    
+</div>
+<div class="form-group col-5">
+  <label>City</label>
+       <select  class="form-control"  value="{{partnerdetails.city}}" readonly>
+            <option *ngFor="let i of city" value={{i.id}}>{{i.name}}</option>
+                        
+       </select>
+       
+</div>
+  <div class="form-group col-1"> </div>
+</div>
+   
+    <br>
+    
+    
+    <div class="text-center">
+        
+        <button class="btn closes" type="reset" (click)="onResets()">Close</button>
+    </div>
+    <br>
+</form>
+
+</div>

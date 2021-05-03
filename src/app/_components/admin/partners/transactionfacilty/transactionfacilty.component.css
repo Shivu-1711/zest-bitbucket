@@ -1,0 +1,138 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  } 
+  
+  
+th {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+.edit
+{
+margin-left: 85%;
+
+}
+/* / The Modal (background) / */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+  overflow:scroll;
+}
+
+/* // input Size */
+.input
+{
+height: 20px;
+}
+/* / Modal Content/Box / */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; 
+  border: 1px solid #888;
+  padding: 50px 0px 0px 0px;
+  width:  500px;  
+  height: auto;
+  }
+  
+
+  .modal-contents {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; 
+    border: 1px solid #888;
+    padding: 20px 0px 0px 0px;
+    width:  500px;  
+    height: auto;
+    }
+    .modal-contentss {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; 
+      border: 1px solid #888;
+      padding: 30px 0px 0px 0px;
+      width: 40%; 
+      height: auto;
+      }
+      
+  /* / Add Zoom Animation / */
+  .animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+  }
+  
+  /* / Change styles for span and cancel button on extra small screens / */
+  @media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+  
+  }
+  .save
+  {
+    background: #72cad2;
+    font-weight: bold;
+    border-color: #72cad2;
+  }
+  .closes
+  {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    font-weight: bold;
+  }
+  label
+  {
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  h3
+  {
+    color: #2c3e50;
+}
+#edit
+{
+  width: 29px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 40%;
+  margin-left: 10px;
+}
+.choose
+{
+color: #2c3e50;
+}
+.centerss
+{
+  width:250px;
+}
+.e-input-group:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap {
+  border-color: rgba(0, 0, 0, 0.42);
+  width: 200px;
+}

@@ -1,0 +1,141 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+	<div class="d-flex flex-wrap">
+		<div class="col-lg-2 set_nopadding col-md-3 col-4">
+
+			<app-sidenav></app-sidenav>
+		</div>
+		<div class="col-lg-10 set_nopadding col-md-9 col-8">
+
+			<app-header></app-header>
+
+
+			<div class="tabcontentbox">
+				<div class="welcome_zest_sec">
+					<div class="container-fluid">
+						<div class="welcome_zest_box">
+							<div class="zest_heading mb-4">
+								<h1><span>Welcome to</span> ZEST</h1>
+							</div>
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<!-- <h1>Admin</h1> -->
+											<h1>Total Users</h1>
+											<p>Today {{todaydate | date:'dd/MM/yyyy'}}</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="admin_color">{{transaction.noOfUser}}</h1>
+											</div>
+											<!-- <div class="zest_inner_box_list">
+													<ul>
+														<li>4 Super Admin</li>
+														<li>6 Admin</li>
+														<li>10 User</li>
+													</ul>
+												</div> -->
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+								
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<h1>Total Review</h1>
+											<p>Today {{todaydate | date:'dd/MM/yyyy'}}</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="Partners_color">{{transaction.noOfReview}}</h1>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<h1>No of issue</h1>
+											<p>Till Now</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="Report_color">{{transaction.noOfIssues}}</h1>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- row-end -->
+							<div class="row mt-5">
+								<div class="col-lg-4">
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<h1>Active Users</h1>
+											<p>Today {{todaydate | date:'dd/MM/yyyy'}}</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="Users_color">{{transaction.activeUser}}</h1>
+											</div>
+											<!-- <div class="zest_inner_box_list">
+													<ul>
+														<li>4 Super Admin</li>
+														<li>6 Admin</li>
+														<li>10 User</li>
+													</ul>
+												</div> -->
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<h1>Partners</h1>
+											<p>Today {{todaydate | date:'dd/MM/yyyy'}}</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="Partners_color">{{transaction.noOfPartners}}</h1>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="zest_inner_box">
+										<div class="zest_inner_box_heading">
+											<h1>Cities</h1>
+											<p>15 days Adove</p>
+										</div>
+										<div class="zest_inner_box_num d-lg-flex">
+											<div class="num">
+												<h1 class="Cities_color">{{transaction.noOfCities}}</h1>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- row-end -->
+						</div>
+					</div>
+				</div>
+				<!-- activiy_graph_sec-end -->
+				<div class="chart_sec mt-4">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-6">
+								<img src="../../../assets/img/Statistics.png" class="img-fluid">
+							</div>
+							<div class="col-lg-6">
+								<div class="divChart">
+									<canvas id="myChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- tabcontentbox-end -->
+
+
+			<app-footer></app-footer>
+		</div>
+	</div>
+</div>

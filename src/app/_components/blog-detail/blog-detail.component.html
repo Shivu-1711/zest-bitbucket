@@ -1,0 +1,69 @@
+<app-homeheader></app-homeheader>
+
+
+<h1 style="text-align: center;
+width: 54%;
+display: block;
+margin: auto;
+font-size: 28px;">{{blogdetail.title}} </h1>
+<br>
+
+
+<div class="partner_sec">
+  <img src={{blogdetail.imageUrl}} class="float-left w-100 blog_img">
+	<div class="container">
+  
+		<div class="partner_sec_heading animate__animated animate__fadeInDown">
+			<h1>{{blogdetail.title}} </h1>
+		</div>
+	</div>
+ </div>
+
+
+ <div class="blog_detail float-left w-100 ">
+	<div class="container">
+		<div class="row">
+      <div class="w-100 float-left contain pl-3 pr-3">
+       
+        <p [innerHTML]="blogdetail.contentUpper">
+          <!-- <angular-editor [config]="config" [(ngModel)]="blogdetail.contentUpper" class="no-outline"></angular-editor> -->
+        </p>
+        
+</div>
+		</div>
+		
+	</div>
+ </div>
+ <div class="float-left w-100 blog_slider">
+   <div>
+ <div>
+  <img src={{slider}} class="float-left w-100 blog_img">
+  <div class="container">
+    <div class="row">
+      <div class="w-100 float-left contain" >
+       
+          <p [innerHTML]="blogdetail.contentLower">
+            <!-- <angular-editor [config]="config"  [(ngModel)]="blogdetail.contentLower"></angular-editor> -->
+          </p>
+          
+</div>
+    </div>
+	</div>
+</div>
+<div class="footer w-100 float-left">
+  <div class="container">
+    <div class="row">
+      <div class="w-100 float-left contain" >
+       
+      <p [innerHTML]="blogdetail.footer">
+        <!-- <angular-editor [config]="config"  [(ngModel)]="blogdetail.footer"   ></angular-editor> -->
+      </p>
+    </div>
+       <!-- <hr class="wp-block-separator">
+           <div _ngcontent-jth-c1="" class="site-info  floatr-left mb-3 pl-3 pr-3" ><a _ngcontent-jth-c1="" rel="nofollow"> <angular-editor [config]="config" [(ngModel)]="blogdetail.footer"    ></angular-editor></a></div> -->
+    </div>
+  </div>
+</div>
+</div>
+
+<app-homefooter class="float-left w-100"></app-homefooter>

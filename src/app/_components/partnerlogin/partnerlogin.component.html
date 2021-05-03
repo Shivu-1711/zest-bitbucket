@@ -1,0 +1,46 @@
+<app-homeheader></app-homeheader>
+<div class="main_login_box" id="partner" style="background: #F2F4F8;">
+	<div class="row">
+		<div class="col-lg-6 loginpage">
+			<div class="admin_login_heading p-4">
+				<h1>Partner Login</h1>
+				<h2>Welcome Back, Please Login to your account</h2>
+				<div class="form_sec">
+					<form name="form" #fl="ngForm" novalidate>
+						<div class="form-group">
+							<input id="email" type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="loginform.email" #email="ngModel" [ngClass]="{ 'is-invalid': fl.submitted && email.invalid }" required />
+							<div *ngIf="fl.submitted && email.invalid" class="invalid-feedback">
+								<div *ngIf="email.errors.required">Email is required</div>
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<input id="password" type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="loginform.password" #password="ngModel" [ngClass]="{ 'is-invalid': fl.submitted && password.invalid }" required password/>
+							<div *ngIf="fl.submitted && password.invalid" class="invalid-feedback">
+								<div *ngIf="password.errors.required">Password is required</div>
+							 
+							</div>
+						</div>
+						<div class="d-lg-flex">
+							<div class="form-group form-check remember_me">
+							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+							    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+						  	</div>
+							  <div>
+							  	<!-- <a href="#">Forget password.?</a> -->
+							  </div>
+						</div>
+						<button class="btn btn_signin" type="submit"  (click)="login(loginform)">SIGN IN</button>
+						<br>
+<br>
+						<button routerLink="/partner-register" class="btn btn_signin"  >SIGN UP</button>
+					
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 d-none d-lg-block bg-login-image">
+			<img src="../../../assets/img/login_page_img.png" class="img-fluid">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,101 @@
+
+<div class="top_logo">
+    <a href="index.html"><img src="../../../assets/img/logo_login.png" class="img_logo"></a>
+</div>
+<div class="dashboard_sidebar">
+    <ul class="mt-lg-3">
+        <li *ngIf="admin">
+            <a routerLink="/dashboard">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><i class="fas fa-home"></i></span> Dashboard</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="superadmin">
+            <a routerLink="/admins">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><i class="fa fa-user"></i></span> Admin</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="admin">
+            <a routerLink="/partners">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><i class="fas fa-handshake"></i></span> Partners</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="admin">
+            <a routerLink="/users">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><i class="fas fa-users"></i></span> Users</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="admin">
+            <a routerLink="/events">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><i class="fas fa-calendar-check"></i></span> Classes</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li  *ngIf="admin">
+            <a routerLink="/advertisment">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><img src="../../../assets/img/advertising.png" class="img_side_icon"></span> Advertisements</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li  *ngIf="admin" >
+            <a routerLink="/issues">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><img src="../../../assets/img/issue.png" class="img_side_icon"></span> Issues</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="admin">
+            <a routerLink="/manage-blog">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><img src="../../../assets/img/issue.png" class="img_side_icon"></span> Blog</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <!-- <li *ngIf="admin">
+            
+                <div class="sidebartabs dropup">
+                    <h6 class="dropbtn"><span class="pr-2 "><img src="../../../assets/img/issue.png" class="img_side_icon"></span> Landing Page</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                    <div class="dropup-content">
+                    <a routerLink="/testimonial">Testimonial</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div></div>              
+            	
+                
+        </li> -->
+        <li *ngIf="admin">
+            <a routerLink="/city">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><img src="../../../assets/img/issue.png" class="img_side_icon"></span> City</h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+        <li *ngIf="admin">
+            <a routerLink="/contact_user">
+                <div class="sidebartabs">
+                    <h6><span class="pr-2"><img src="../../../assets/img/issue.png" class="img_side_icon"></span>User Message </h6>
+                    <h6 class="ml-auto"><i class="fas fa-caret-right"></i></h6>
+                </div>
+            </a>	
+        </li>
+    </ul>
+</div>

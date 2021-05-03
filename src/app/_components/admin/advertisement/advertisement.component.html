@@ -1,0 +1,164 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+    <div class="d-flex flex-wrap">
+        <div class="col-lg-2 set_nopadding col-md-3 col-4">
+            
+           <app-sidenav></app-sidenav>
+        </div>
+        <div class="col-lg-10 set_nopadding col-md-9 col-8">
+            
+            <app-header></app-header>    
+            
+
+            <div class="tabcontentbox">
+                <div class="container-fluid">
+                    <div class="gym_user_box">
+                        <div class="gym_user_heading">
+                            <h1 *ngIf="click">Click on button to see Advertisement</h1>
+                            <h1  *ngIf="glo">Global Advertisement</h1>
+                            <h1 *ngIf="loc">Local Advertisement</h1>
+                        </div>
+
+
+                        <div class="row">
+                           <div class="col-lg-9"></div>
+                            <div class="col-lg-3">
+                               <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn save btn-lg" >Add Advertisement</button>
+                            </div>
+                          </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-4"> <button type="button" (click)="global()" class="btn save btn-lg" >View Global</button></div>
+                            <div class="col-1"></div>
+                            <div class=" col-4">  <button type="button" (click)="local()" class="btn save btn-lg" >View Local</button></div>
+                            <div class="col-1"></div>
+                          </div>
+                          
+                <mat-form-field>
+
+
+                    <mat-label class="label">SEARCH</mat-label>
+                    <input class="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                </mat-form-field>
+                <br>
+                <br>
+
+                <table mat-table [dataSource]="rowData" matSort class="mat-elevation-z8">
+
+                    <!-- Position Column -->
+
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="url">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image</th>
+                        <td mat-cell *matCellDef="let element"> <img class="photo" src="{{element.url}}"> </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="advertismentType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.advertismentType}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+                        <td mat-cell *matCellDef="let element"><span *ngIf="glo">All City</span><span *ngFor="let i of element.city">{{i.name}} &nbsp;</span>  </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                        <td mat-cell *matCellDef="let element"> <mat-slide-toggle [color]="color"
+                          [checked]="element.active"
+                          (click)="status(element.active,element.id)" ></mat-slide-toggle>
+                         </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                        <td mat-cell *matCellDef="let element"> 
+                           <mat-icon (click)="deleted(element.id)">delete</mat-icon></td>
+                      </ng-container>
+                   
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+
+                </table>
+                 <mat-paginator [pageSizeOptions]="[10,15,20,25]" showFirstLastButtons></mat-paginator>
+            </div><!-- tabcontentbox-end -->
+            
+</div>
+</div>
+            
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+<!-- password reset -->
+<div id="id01" class="modal">
+  
+    <form [formGroup]="addadvert" (ngSubmit)="onSubmit()" class="modal-contents animate">
+      <div class="form-row">
+        <div class="form-group col-3"></div>
+        <div class="form-group col-8"> <h4>Add Advertisement </h4></div>
+        <div class="form-group col-1"></div>
+      </div> 
+      <div class="form-row">
+        <div class="form-group col-2"></div>
+        <div class="form-group col-8">
+            <label>Advertisement Type</label>
+            <select formControlName="type" class="form-control" #sel (change)="Global(sel.value)" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                 <option   value="Global">Global</option>
+                 <option  value="Local">Local</option>
+            </select>
+            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+           <div *ngIf="f.type.errors.required">Type is required</div>
+           </div>
+         </div>
+        <div class="form-group col-2"></div>
+      </div> 
+      <div class="form-row" >
+          <div class="form-group col-2"></div>
+          <div class="form-group col-8" *ngIf="cityshow">
+              
+             
+             <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select placeholder="city" formControlName="city"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" multiple>
+                  <mat-option *ngFor="let i of city" [value]="i.id">{{i.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors.required">city is required</div>
+                </div>
+          </div>
+          <div class="form-group col-2">
+            
+          </div>
+          
+      </div>
+      <div class="row">
+      <div class="form-group col-4"></div>
+      <div class="form-group col-4"> <input  type="file" accept="image/*" (change) = "fileChangeEvent($event)"></div>
+      <div class="form-group col-4"></div>
+    </div>
+      <br>
+      
+      
+      <div class="text-center">
+          <button class="btn  mr-1 save">SAVE</button>
+          <button class="btn closes" type="reset" (click)="onResetss()">Close</button>
+      </div>
+      <br>
+  </form>
+  <br>
+  
+  </div>

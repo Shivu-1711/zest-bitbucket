@@ -1,0 +1,91 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+   <div class="d-flex flex-wrap">
+      <div class="col-lg-2 set_nopadding col-md-3 col-4">
+         <app-sidenav></app-sidenav>
+      </div>
+      <div class="col-lg-10 set_nopadding col-md-9 col-8">
+         <app-header></app-header>
+         <div class="tabcontentbox">
+            <div class="container-fluid">
+            <div class="row">
+               <div class="form_maindiv col-sm-6 float-left ">
+                  <h3 class="w-100">Add New Blog</h3>
+                  <div ng-app="MyApp" ng-controller="AppCtrl" layout-margin layout-padding class="w-100">
+                     <form    [formGroup]="form" (ngSubmit)="onSubmit()" class="addblog_form">
+                       <div class="example-full-width">
+                     </div>
+                           <label class="pb-2 w-100 float-left">Upload Banner</label>
+                           <div class="upload_div">
+                              <!-- <button  class="btn addblog_btn"  formControlName="Upload" id="input-file-id" [ngClass]="{ 'is-invalid': submitted && f.Upload.errors }" >Upload Banner </button> -->
+                        <input type="file"  accept="image/*" (change) = "fileChangeEvent($event)" required class="btn addblog_btn"  formControlName="Upload" id="input-file-id" [ngClass]="{ 'is-invalid': submitted && f.Upload.errors }"> 
+                           <div *ngIf="submitted && f.Upload.errors" class="invalid-feedback">
+                              <div *ngIf="f.Upload.errors.required"> Upload is required</div>
+                          </div>
+                       
+                         
+                        </div>
+                        <div class="form-group mt-3">
+                           <label>Banner Title</label>
+                           <br>
+
+                           <!-- <input  type="text" required > -->
+                           <textarea matInput  maxlength="300" style="margin-top: 0px;
+                           margin-bottom: 0px;
+                           height: 72px;
+                           width: 100%;
+                           border: 1px;" class="mdc-text-field__input"  formControlName="Title" ></textarea>
+                           <!-- <angular-editor  [config]="configs" [ngClass]="{ 'is-invalid': submitted && f.Title.errors }" ></angular-editor> -->
+                           <div *ngIf="submitted && f.Title.errors" class="invalid-feedback">
+                              <div *ngIf="f.Title.errors.required"> Title is required</div>
+                          </div>
+                        </div>
+                       
+                       
+                        <div class="form-group">
+                           <label>Blog Contain</label>
+                           <angular-editor required formControlName="Containuper" [config]="configs" [ngClass]="{ 'is-invalid': submitted && f.Containuper.errors }" ></angular-editor>
+                           <div *ngIf="submitted && f.Containuper.errors" class="invalid-feedback">
+                              <div *ngIf="f.Containuper.errors.required"> Contain uper is required</div>
+                          </div>
+                        </div>
+
+
+
+
+                        
+                       
+
+                           <label class="pb-2 w-100">Middle  Images</label>
+                         
+                           <!-- <button type="submit"  >Upload Banner </button> -->
+                        <input type="file" accept="image/*"  (change)="selectFile($event)" required class="btn addblog_btn"  formControlName="Slider" id="input-file-id" multiple type="file" [ngClass]="{ 'is-invalid': submitted && f.Slider.errors }">
+                           <div *ngIf="submitted && f.Slider.errors" class="invalid-feedback">
+                              <div *ngIf="f.Slider.errors.required"> Slider is required</div>
+                          </div>
+                        <div class="form-group">
+                           <label>Blog Contain</label>
+                           <angular-editor required formControlName="Containlower" [config]="configs" [ngClass]="{ 'is-invalid': submitted && f.Containlower.errors }"></angular-editor>
+                           <div *ngIf="submitted && f.Containlower.errors" class="invalid-feedback">
+                              <div *ngIf="f.Containlower.errors.required"> Containlower is required</div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                           <label>Blog footer Contain</label>
+                           <angular-editor  formControlName="footer" [config]="configs" [ngClass]="{ 'is-invalid': submitted && f.footer.errors }" required ></angular-editor>
+                           <div *ngIf="submitted && f.footer.errors" class="invalid-feedback">
+                              <div *ngIf="f.footer.errors.required"> footer is required</div>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn addblog_btn">Add Blog </button>
+                        <button type="button" class="btn addblog_btn cancel_btn">cancel </button>
+                     </form>
+                  </div>
+               </div>
+               <img src="../../../../../assets/img/zest_blog.png" class="w-100 float-left col-sm-6">
+            </div>
+            </div>
+         </div>
+         <!-- tabcontentbox-end -->
+      </div>
+   </div>
+</div>

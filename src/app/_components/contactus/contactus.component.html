@@ -1,0 +1,74 @@
+<app-homeheader></app-homeheader>
+<div class="partner_sec">
+    <div class="container">
+        <div class="partner_sec_heading animate__animated animate__fadeInDown">
+            <h1> Contact Us </h1>
+            <h2> If you have any question or queries a Zest team will always be happy to help .<br>Feel free to contact us by email , phone  or fill the form below. </h2>
+        </div>
+    </div>
+</div>
+<div class="float-left w-100 contactus">
+    <div class="container">
+        <div class="Row">
+            <h3 class="float-left"><span>Get In</span> Touch</h3>
+
+        </div>
+        <form  [formGroup]="contactform" (ngSubmit)="onSubmit()" class="float-left w-100 mt-3 row">
+            <div class="form-group  col-md-6 col-sm-12">
+
+                <input class="form-control input" formControlName="firstname"   [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" id="Fname" name="Fname" placeholder="First Name" required=""
+                    type="text">
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required"> Firstname is required</div>
+                    </div>
+            </div>
+            <div class="form-group  col-md-6 col-sm-12">
+
+                <input type="Text" class="form-control input" id="InputLname" placeholder="Enter Last Name" formControlName="lastname"   [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required"> Lastname is required</div>
+                </div>
+            </div>
+            <div class="form-group  col-md-6 col-sm-12">
+
+                <input type="Text" class="form-control input" id="InputCno" placeholder="Enter Contact Number"
+                formControlName="contactNo"   [ngClass]="{ 'is-invalid': submitted && f.contactNo.errors }">
+                    <div *ngIf="submitted && f.contactNo.errors" class="invalid-feedback">
+                        <div *ngIf="f.contactNo.errors.required">Number is required</div>
+                        <div *ngIf="f.contactNo.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+                    </div>
+            </div>
+            <div class="form-group  col-md-6 col-sm-12">
+
+                <input class="form-control input" id="email" name="email" placeholder="Enter Email Address" formControlName="officialEmail"   [ngClass]="{ 'is-invalid': submitted && f.officialEmail.errors }"
+                    type="email">
+                    <div *ngIf="submitted && f.officialEmail.errors" class="invalid-feedback">
+                        <div *ngIf="f.officialEmail.errors.required">Email is required</div>
+                        <div *ngIf="f.officialEmail.errors.pattern">Please, Enter valid Email</div>
+                    </div>
+            </div>
+            <div class="form-group  col-md-6 col-sm-12">
+
+                <input class="form-control input" id="InputCno" name="subject" placeholder="Enter subject here" formControlName="subject"   [ngClass]="{ 'is-invalid': submitted && f.subject.errors }"
+                    type="email">
+                    <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                       
+                        <div *ngIf="f.subject.errors.required"> Subject is required</div>
+                    </div>
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                <label for="exampleFormControlTextarea1">Message</label>
+                <textarea class="form-control" formControlName="message"   [ngClass]="{ 'is-invalid': submitted && f.message.errors }" id="exampleFormControlTextarea1" rows="10" ></textarea>
+                <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                    <div *ngIf="f.message.errors.required"> Message is required</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<app-homefooter class="float-left w-100"></app-homefooter>

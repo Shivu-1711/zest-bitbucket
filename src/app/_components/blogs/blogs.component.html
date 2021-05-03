@@ -1,0 +1,132 @@
+<app-homeheader></app-homeheader>
+<div class="blog_banner">
+    <div class="container">
+      <div class="blog_banner_heading animate__animated animate__fadeInDown">
+        <h2>BLOG</h2>
+        <p>Curated and created latest information of what is happening in the Canadian Fitness Sector.</p>
+          
+      </div>
+     
+    </div>
+  </div><!-- contact_banner-end -->
+  <div class="news-section">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column" *ngFor="let i of allblogs">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a routerLink="/detail-blog/{{i.id}}"><img   src="{{i.imageUrl}}" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;{{i.date}}</div>
+                                  <h3><a routerLink="/detail-blog/{{i.id}}">{{i.title}}</a></h3>
+                                  <div class="link-btn"><a routerLink="/detail-blog/{{i.id}}">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                         <a routerLink="blog1"> <div  class="inner-box">
+                              
+                              <div class="image-box"><a routerLink="/blog1" ><img src="../../../assets/img/pandemic-5026718_1280-1.jpg"></a></div>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;2020-11-14</div>
+                                  <h3><a routerLink="/blog1" >COVID19: A Catastrophe or blessing on the Fitness Industry?</a></h3>
+                                 
+                              </div>
+                          </div></a>
+                      </div>
+                  </div>
+                   <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              
+                              <div class="image-box"><a routerLink="/blog2" ><img src="../../../assets/img/blog-2.png"></a></div>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;2020-10-12</div>
+                                  <h3><a routerLink="/blog2" >Which is the fastest growing segment of the Fitness Industry?</a></h3>
+                                 
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+              <!-- <div class="row mt-5">
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_1.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 11, 2020</div>
+                                  <h3><a href="blog-single.html">EAT RIGHT, BE BRIGHT ,WORK MORE</a></h3>
+                                  <div class="link-btn"><a href="blog-single.html">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_2.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 16, 2020</div>
+                                  <h3><a href="blog-single.html">GETTING BACK INTO CROSSFIT AFTER VACATION</a></h3>
+                                  <div class="link-btn"><a href="blog-single.html">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_3.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 27, 2020</div>
+                                  <h3><a href="blog-single.html">WHY YOU SHOULD GO TO YOGA THEN GYM</a></h3>
+                                  <div class="link-btn"><a href="blog-single.html">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row mt-5">
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_1.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 11, 2020</div>
+                                  <h3><a href="blog-single.html">EAT RIGHT, BE BRIGHT ,WORK MORE</a></h3>
+                                  <div class="link-btn"><a routerLink="/detail-blog">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_2.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 16, 2020</div>
+                                  <h3><a href="blog-single.html">GETTING BACK INTO CROSSFIT AFTER VACATION</a></h3>
+                                  <div class="link-btn"><a href="blog-single.html">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12 news-column">
+                      <div class="news-block-one wow flipInY animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                          <div class="inner-box">
+                              <figure class="image-box"><a href="blog-single.html"><img src="../../../assets/img/blog_3.jpg" alt=""></a></figure>
+                              <div class="lower-content">
+                                  <div class="post-date"><i class="fas fa-calendar-alt"></i>January 27, 2020</div>
+                                  <h3><a href="blog-single.html">WHY YOU SHOULD GO TO YOGA THEN GYM</a></h3>
+                                  <div class="link-btn"><a href="blog-single.html">Read More</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+<app-homefooter></app-homefooter>

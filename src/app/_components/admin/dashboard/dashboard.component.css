@@ -1,0 +1,10 @@
+.divChart
+{
+    background-color:white;
+    width: 100%;
+    height: 79%;
+}
+  
+agm-map {
+    height: 400px;
+  }

@@ -1,0 +1,383 @@
+<div class="sidebar_section" style="background: #F2F4F8;">
+    <div class="d-flex flex-wrap">
+        <div class="col-lg-2 set_nopadding col-md-3 col-4">
+            
+           <app-sidenav></app-sidenav>
+        </div>
+        <div class="col-lg-10 set_nopadding col-md-9 col-8">
+            
+            <app-header></app-header>    
+            
+
+            <div class="tabcontentbox">
+                <div class="users_details_sec">
+                    <div class="container-fluid">
+                        <div class="users_details_box">
+                          <div>
+                            <h5 style="color: #71cad2; padding-left: 17px;"><a>Users</a>></h5>
+                          </div>
+                            <div class="users_details_heading mb-4">
+                                <h1>All User Detail</h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="users_details_inner_box">
+                                        <div class="icon_circle">
+                                            <span><i class="fas fa-users"></i></span>
+                                        </div>
+                                        <h1>Total No of Visits</h1>
+                                        <h2>{{usercount.noOfUser}}</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="users_details_inner_box">
+                                        <div class="icon_circle">
+                                            <span><i class="fas fa-users"></i></span>
+                                        </div>
+                                        <h1>Active Users</h1>
+                                      <h2>{{usercount.activeUser}}</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="users_details_inner_box">
+                                  <div class="divChart">
+                                    <canvas id="myChart"></canvas>
+                                     </div>
+                                    </div>
+                                </div>
+                            </div><!-- row-end -->
+                        </div>
+                    </div>
+                </div><!-- partners_details-end -->
+                <div class="user_table_sec">
+                    <div class="container-fluid">
+                        <br>
+                        <br>
+                        <div class="gym_user_box">
+                         
+                          <div class="gym_user_heading">
+                              <h1>All  End Users</h1>
+                          </div>
+                        <div class="row">
+                          <div class="col-lg-7">
+                            <mat-form-field>
+                          
+                         
+                              <mat-label class="label">SEARCH</mat-label>
+                              <input class="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-2">
+                            
+                          </div>
+                          <div class="col-lg-3">
+                             <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn save btn-lg" >Add EndUsers</button>
+                          </div>
+                        </div>
+                       
+                       
+                        
+                        <table mat-table  [dataSource]="rowData" matSort  class="mat-elevation-z8">
+                        
+                          <!-- Position Column -->
+                          <ng-container matColumnDef="ZestID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ZestID </th>
+                            <td mat-cell *matCellDef="let element"> {{element.user.id}} </td>
+                          </ng-container>
+                        
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+                        
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="userName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>  User Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                          </ng-container>
+                        
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}}  </td>
+                          </ng-container>
+                          <ng-container matColumnDef="contactNumber">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
+                            <td mat-cell *matCellDef="let element"> {{element.contactNumber}}  </td>
+                          </ng-container>
+                          <ng-container matColumnDef="Date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+                            <td mat-cell *matCellDef="let element"> {{element.createdDate | date: 'dd/MM/yyyy'}}  </td>
+                          </ng-container>
+                          <ng-container matColumnDef="Status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                            <td mat-cell *matCellDef="let element"> <mat-slide-toggle [color]="color"
+                              [checked]="element.active"
+                              (click)="status(element.active,element.id)" ></mat-slide-toggle></td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element">
+                             <div mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon class="arrow">more_vert</mat-icon>
+                              </div>
+                              <mat-menu #menu="matMenu">
+                                <button (click)="edit(element)" mat-menu-item >
+                                  <mat-icon>edit</mat-icon>
+                                  <span>Update Profile</span>
+                                </button>
+                                <button (click)="password(element)" mat-menu-item>
+                                  <mat-icon>vpn_key</mat-icon>
+                                  <span>Update Password</span>
+                                </button>
+                              </mat-menu>
+
+                            </td>
+                          </ng-container>
+                          
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        
+                          <!-- Row shown when there is no matching data. -->
+                          <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                          </tr>
+                         
+                        </table>
+                        <mat-spinner class="messagep" *ngIf="spinner"></mat-spinner>
+                          <mat-paginator [pageSizeOptions]="[10,15,20,25]" showFirstLastButtons></mat-paginator>
+                        
+                        
+                        
+                        </div>
+                      </div>
+                </div>
+            </div><!-- tabcontentbox-end -->
+            
+
+            
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+
+
+<!-- //add end user -->
+
+<div id="id01" class="modal">
+<form [formGroup]="enduserForm" (ngSubmit)="onSubmit()" class="modal-content animate">
+  <div class="form-row">
+    <div class="form-group col-3"></div>
+    <div class="form-group col-6"> <h3>Add End User</h3></div>
+    <div class="form-group col-3"></div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+          <label> Name</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required"> Name is required</div>
+          </div>
+      </div>
+      <div class="form-group col-5">
+          <label> Contact Number</label>
+          <input type="number" formControlName="contactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactNumber.errors }" />
+          <div *ngIf="submitted && f.contactNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.contactNumber.errors.required">Contact Number is required</div>
+          </div>
+      </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+      <label> Address</label>
+      <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">Address is required</div>
+      </div>
+  </div>
+  <div class="form-group col-5">
+    <label>User Name </label>
+    <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+        <div *ngIf="f.userName.errors.required">User Name is required</div>
+    </div>
+</div>
+    <div class="form-group col-1"> </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-1"></div>
+  <div class="form-group col-5">
+      <label> Email</label>
+      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required"> Email is required</div>
+      </div>
+  </div>
+  <div class="form-group col-5">
+      <label>password </label>
+      <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">password is required</div>
+      </div>
+  </div>
+  <div class="form-group col-1"></div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-1"></div>
+  <div class="form-group col-5">
+    <label>City</label>
+    <select formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+         <option *ngFor="let i of city" value={{i.id}}>{{i.name}}</option>
+                     
+    </select>
+    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+   <div *ngIf="f.city.errors.required">City is required</div>
+   </div>
+  </div>
+  <div class="form-group col-5">
+     
+  </div>
+  <div class="form-group col-1"></div>
+</div>
+ 
+  
+  
+  <div class="text-center">
+      <button class="btn save">SAVE</button>&nbsp;&nbsp;
+      <button class="btn closes" type="reset" (click)="onreset()">close</button>
+      
+  </div>
+  <br>
+</form>
+</div>
+
+<!-- edit end user -->
+<div id="id02" class="modal">
+  <form [formGroup]="editenduserForm" (ngSubmit)="onSubmits()" class="modal-content animate">
+    <div class="form-row">
+      <div class="form-group col-3"></div>
+      <div class="form-group col-6"> <h3>Edit end user</h3></div>
+      <div class="form-group col-3"></div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-1"></div>
+        <div class="form-group col-5">
+            <label> Name</label>
+            <input type="text" formControlName="name" class="form-control" [(ngModel)]="name"  [ngClass]="{ 'is-invalid': submitted && g.name.errors }" />
+            <div *ngIf="submitted && g.name.errors" class="invalid-feedback">
+                <div *ngIf="g.name.errors.required"> Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label> Contact Number</label>
+            <input type="number" formControlName="contactNumber" [(ngModel)]="editdata.contactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.contactNumber.errors }" />
+            <div *ngIf="submitted && g.contactNumber.errors" class="invalid-feedback">
+                <div *ngIf="g.contactNumber.errors.required">Contact Number is required</div>
+            </div>
+        </div>
+        <div class="form-group col-1"> </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-1"></div>
+      <div class="form-group col-5">
+        <label> Address</label>
+        <input type="text" formControlName="address" class="form-control" [(ngModel)]="editdata.address" [(ngModel)]="editdata.name"  [ngClass]="{ 'is-invalid': submitted && g.address.errors }" />
+        <div *ngIf="submitted && g.address.errors" class="invalid-feedback">
+            <div *ngIf="g.address.errors.required">Address is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+      <label>User Name </label>
+      <input type="text" formControlName="userName" class="form-control" [(ngModel)]="editdata.userName" [ngClass]="{ 'is-invalid': submitted && g.userName.errors }" />
+      <div *ngIf="submitted && g.userName.errors" class="invalid-feedback">
+          <div *ngIf="g.userName.errors.required">User Name is required</div>
+      </div>
+  </div>
+      <div class="form-group col-1"> </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+        <label> Email</label>
+        <input type="text" formControlName="email" class="form-control" [(ngModel)]="editdata.email" [ngClass]="{ 'is-invalid': submitted && g.email.errors }" />
+        <div *ngIf="submitted && g.email.errors" class="invalid-feedback">
+            <div *ngIf="g.email.errors.required"> Email is required</div>
+        </div>
+    </div>
+    <div class="form-group col-5">
+      
+    </div>
+    <div class="form-group col-1"></div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col-1"></div>
+    <div class="form-group col-5">
+      <label>City</label>
+      <select formControlName="city" class="form-control" [(ngModel)]="cities" [ngClass]="{ 'is-invalid': submitted && g.city.errors }">
+           <option *ngFor="let i of city" value={{i.id}}>{{i.name}}</option>
+                       
+      </select>
+      <div *ngIf="submitted && g.city.errors" class="invalid-feedback">
+     <div *ngIf="g.city.errors.required">City is required</div>
+     </div>
+    </div>
+    <div class="form-group col-5">
+       
+    </div>
+    <div class="form-group col-1"></div>
+  </div>
+   
+    
+    
+    <div class="text-center">
+        <button class="btn save">SAVE</button>&nbsp;&nbsp;
+        <button class="btn closes" type="reset" (click)="onresets()">close</button>
+        
+    </div>
+    <br>
+  </form>
+  </div>
+
+
+<!-- password reset -->
+<div id="id03" class="modal">
+  
+  <form [formGroup]="passwordform" (ngSubmit)="onSubmitss()" class="modal-contents animate">
+    <div class="form-row">
+      <div class="form-group col-2"></div>
+      <div class="form-group col-8"> <h4>Password Change</h4></div>
+      <div class="form-group col-2"></div>
+    </div> 
+    <div class="form-row" >
+        <div class="form-group col-2"></div>
+        <div class="form-group col-8" >
+            <label>New Password</label>
+            <input type="password" formControlName="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && p.password.errors }" />
+            <div *ngIf="submitted && p.password.errors" class="invalid-feedback">
+                <div *ngIf="p.password.errors.required"> password is required</div>
+            </div>
+        </div>
+        
+        <div class="form-group col-2"> </div>
+    </div>
+    <br>
+    
+    
+    <div class="text-center">
+        <button class="btn  mr-1 save">SAVE</button>
+        <button class="btn closes" type="reset" (click)="onResetss()">Close</button>
+    </div>
+    <br>
+</form>
+<br>
+
+</div>
+

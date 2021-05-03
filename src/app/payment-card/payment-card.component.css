@@ -1,0 +1,33 @@
+.testing_main {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #fcfcfd;
+    padding: 50px;
+    width: 50%;
+    margin: 0 auto;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+  .testing_main input {
+    padding: 15px 10px;
+    width: 300px;
+    border-radius: 15px;
+    border-width: 1px;
+  }
+  .testing_main .promo {
+    width: 150px;
+  }
+  .promo_label {
+    background: #ebebeb;
+    padding: 10px;
+    width: 50%;
+  }
+  .flex_1 {
+    flex: 1;
+  }
+  
